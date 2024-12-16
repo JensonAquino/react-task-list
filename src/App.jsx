@@ -27,26 +27,28 @@ function App() {
     
   return (
     <>
-      <header>
-        Task manager 
+    {/* <div className="container"> */}
+      <header className="header">
+        <h1 className="container">Task manager </h1>
       </header>
-      <main>
-        <section>
-        <h2>Current Tasks ({currentTasks.length}) </h2>
-        <ul>
+      <main className="container">
+        <section className="mb-1">
+        <h2 className="mb-1">Current Tasks ({currentTasks.length}) </h2>
+        <ul className="task-list">
         {printList(currentTasks)}
         </ul>
         </section>
         
         <hr />
 
-        <section>
-        <h2>Complited Tasks ({complitedTasks.length})</h2>
-        <ul>
+        <section className="mb-1">
+        <h2 className="mb-1">Complited Tasks ({complitedTasks.length})</h2>
+        <ul className="task-list">
         {printList(complitedTasks)}
         </ul>
         </section>
       </main>
+    {/* </div> */}
     </>
   )
 }
