@@ -1,33 +1,52 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
 
+import tasks from "./data/data.js";
 function App() {
-  const [count, setCount] = useState(0)
+ console.log(tasks)
+  const currentTasks = tasks.filter((curTask) => 
+    curTask.state !== "completed"
+  );
+  const complitedTasks = tasks.filter((curTask) => 
+    curTask.state === "completed"
+  );
 
+  const printList = (array) => {
+    return array.map(curtask => (
+      <li key={curtask.id} className="task">
+        <div className="title">
+        <h4>{curtask.title}</h4>
+        <span className="state">{curtask.state}</span>
+        </div>
+        <div className="detail">
+          Priority: {curtask.priority}
+        </div>
+        <div className="detail">
+          Est. time: {curtask.estimatedTime}
+        </div>
+        </li>
+    ))};
+    
   return (
     <>
-      <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header>
+        Task manager 
+      </header>
+      <main>
+        <section>
+        <h2>Current Tasks ({currentTasks.length}) </h2>
+        <ul>
+        {printList(currentTasks)}
+        </ul>
+        </section>
+        
+        <hr />
+
+        <section>
+        <h2>Complited Tasks ({complitedTasks.length})</h2>
+        <ul>
+        {printList(complitedTasks)}
+        </ul>
+        </section>
+      </main>
     </>
   )
 }
